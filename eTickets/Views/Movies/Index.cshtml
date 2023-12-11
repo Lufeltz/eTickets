@@ -14,32 +14,42 @@
                         <div class="card-header text-white bg-info">
                             <p class="card-text">
                                 <h5 class="card-title">
-                                    Movie Name Sample
+                                    @movie.Name
                                     <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
                                 </h5>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="" width="100%" alt=""/>
+                        <img src="@movie.ImageURL" width="100%" alt="@movie.Name" />
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <p class="card-text">Description Sample</p>
-                            <p class="card-text"><b>Cinema: </b>Name Sample</p>
-                            <p class="card-text"><b>Category: </b>Name Sample</p>
-                            <p class="card-text"><b>Start Date: </b>Name Sample</p>
-                            <p class="card-text"><b>End Date: </b>Name Sample</p>
-                            <p class="card-text"><b>Status: </b>Status Sample</p>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-footer">
+                            <p class="card-text">@movie.Description</p>
+                            <p class="card-text"><b>Cinema: </b>@movie.Cinema.Name</p>
+                            <p class="card-text"><b>Category: </b>@movie.MovieCategory</p>
+                            <p class="card-text"><b>Start Date: </b>@movie.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@movie.EndDate.ToString("dd MMM yy")</p>
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill">Show Details</i></a>
-                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus">Add to Cart ($X.XX)</i></a>
+                                <b>Status: </b>
+                                @if (DateTime.Now >= movie.StartDate && DateTime.Now <= movie.EndDate)
+                                {
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                }
+                                else if (DateTime.Now > @movie.EndDate)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRE</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
                             </p>
                         </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a class="btn btn-outline-primary"><i class="bi bi-eye-fill"></i> Show Details</a>
+                        <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Add to Cart (@movie.Price.ToString("c")</a>
                     </div>
                 </div>
             </div>
