@@ -38,6 +38,16 @@ namespace eTickets.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails = await _service.GetActorAsync(id);
 
+            if(actorDetails == null)
+            {
+                return View("Empty");
+            }
+
+            return View(actorDetails);
+        }
     }
 }
