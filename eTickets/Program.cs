@@ -1,6 +1,5 @@
 using eTickets.Data;
 using eTickets.Data.Services;
-using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
